@@ -1,0 +1,16 @@
+{
+  "name": "express-mysql-2",
+  "version": "1.0.0",
+  "description": "membuat crud dengan express dan mysql",
+  "main": "index.js",
+  "author": "haikal",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+      "start": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.6.5"
+  }
+}
