@@ -10,7 +10,16 @@ const createUsers = (body) => {
     return SQLquery
 }
 
+const updateUsers = (body, id) =>  {
+    const SQLquery = ` UPDATE users SET nama = '${body.nama}',
+                       umur = ${body.umur}, address = '${body.address}', noTelpone = ${body.noTelpone}
+                       WHERE id = ${id}
+                     `
+    return SQLquery
+}
+
 module.exports = {
     getAllUsers,
     createUsers,
+    updateUsers,
 }

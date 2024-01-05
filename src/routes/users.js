@@ -1,16 +1,20 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const router = express.Router()
-const { readData, createData }  = require('../controller/users')
+const { readData, createData,  updateData }  = require('../controller/users')
 
 // BODY-PARSER SETUP    
 const bodyJson = bodyParser.json()
 
 
 // READ
-router.get('/', readData)
+router.get('/read', readData)
 
 // CREATE 
-router.post('/register', bodyJson, createData)
+router.post('/create', bodyJson, createData)
+
+// UPDATE
+router.patch('/update/:id', bodyJson, updateData)
+
 
 module.exports = router;
