@@ -22,3 +22,4 @@ const TableUsers = db.define('users', {
 })
 
 module.exports = TableUsers
+

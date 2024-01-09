@@ -9,5 +9,4 @@ const connectDb = new sequelize('express_mysql_2', 'root', 'root', {
 
 connectDb.authenticate(() => console.log('connected to database !'))
 
-
 module.exports = connectDb

@@ -12,6 +12,11 @@ const readUsers = async (req, res) => {
   })
 }
 
+const searchUser = (req, res) => {
+  res.json({
+      message: 'ok'
+  })
+}
 
 
 // CREATE 
@@ -28,7 +33,6 @@ const createUsers = async (req, res) => {
     noTelpone: noTelpone
   })
   
-  console.log(CreateUser)
   res.status(201).json({
     statusCode: 201,
     message: 'berhasil membuat user',
