@@ -1,19 +1,16 @@
 const mysql = require('mysql2')
-const connectDb = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'express_mysql_2',
+const sequelize = require('sequelize')
+
+// hubungkan database 
+const connectDb = new sequelize('express_mysql_2', 'root', 'root', {
+  host: '127.0.0.1',
+  dialect: 'mysql'
 })
 
+<<<<<<< HEAD
+=======
+connectDb.authenticate(() => console.log('connected to database !'))
 
-connectDb.connect((err) => {
-    if (err) {
-        console.error(err)
-    }
-    else { 
-        console.log('database connect !!! ')
-    }
-})
 
+>>>>>>> dev
 module.exports = connectDb

@@ -1,23 +1,20 @@
-const models = require('../models/users')
-const db = require('../config/database')
+const TableUser = require('../models/users')
 
 
 
 // READ
-const readData = (req, res) => {
-  db.query(models.getAllUsers(), (err, rows) => {
-    if (err) {
-      res.status(500).json({
-        statusCode: 500,
-        message: 'internal server error',
-        serverMessage: err //  DEV
-      })
-    }
-    res.status(200).json({
-      statusCode: 200,
-      message: "readData users",
-      data: rows
-    })
+<<<<<<< HEAD
+
+=======
+const readUsers = async (req, res) => {  
+  const getDataUser = await TableUser.findAll()
+  const parse = JSON.stringify(getDataUser)
+  
+  res.status(200).json({
+    statusCode: 200,
+    message: 'mengambil data users',
+    data: parse
+>>>>>>> dev
   })
 }
 
@@ -27,89 +24,79 @@ const searchUser = (req, res) => {
   })
 }
 
+
 // CREATE 
-const createData = (req, res) => {
-
-  if (!req.body.nama || !req.body.umur || req.body.address || req.body.noTelpone) {
-    res.status(400).json({
-      statusCode: 400,
-      message: 'invalid data !!!'
-    })
-  }
-
-  else {
-
-    db.query(models.createUsers(req.body), (err, rows) => {
-      if (err) {
-        res.status(500).json({
-          statusCode: 500,
-          message: 'failed create users !!!',
-          serverMessage: err //  DEV
-        })
-      }
-
-      res.status(201).json({
-        statusCode: 201,
-        message: 'success creating users !!!',
-        rows: rows.affectedRows,
-        insertId: rows.insertId
-      })
-    })
-  }
+<<<<<<< HEAD
+=======
+const createUsers = async (req, res) => {
+  const nama = req.body.nama;
+  const umur = req.body.umur;
+  const address = req.body.address;
+  const noTelpone = req.body.noTelpone;
+  
+  const CreateUser = await TableUser.create({
+    nama: nama,
+    umur: umur,
+    address: address,
+    noTelpone: noTelpone
+  })
+  
+  console.log(CreateUser)
+  res.status(201).json({
+    statusCode: 201,
+    message: 'berhasil membuat user',
+  })
+>>>>>>> dev
 }
+
 
 
 // UPDATE 
-const updateData = (req, res) => {
+<<<<<<< HEAD
 
-  if (!req.body.nama || !req.body.umur || req.body.address || req.body.noTelpone) {
-    res.status(400).json({
-      statusCode: 400,
-      message: 'invalid data !!!'
-    })
-  }
-
-  else {
-    db.query(models.updateUsers(req.body, req.params.id), (err, rows) => {
-
-      if (err) {
-        res.status(500).json({
-          statusCode: 500,
-          message: 'failed update users !!!',
-          serverMessage: err //  DEV
-        })
-      }
-
-      res.status(200).json({
-        statuscode: 200,
-        message: 'success update users !!!'
-      })
-    })
-  }
+=======
+const updateUsers = async (req, res)  => {
+  const nama = req.body.nama;
+  const umur = req.body.umur;
+  const address = req.body.address;
+  const noTelpone = req.body.noTelpone;
+  
+  const UpdateUser =  await TableUser.update({
+    nama: nama,
+    umur: umur,
+    address: address,
+    noTelpone: noTelpone
+  }, {
+    where: {
+      id: req.params.id
+    }
+  })
+  
+  res.json({
+    statusCode: 200,
+    message: 'berhasil update users',
+    data: UpdateUser
+  })
 }
 
-// DELETE
-const deleteData = (req, res) => {
-  db.query(models.deleteUsers(req.params.id), (err, rows) => {
-    if (err) {
-      res.status(500).json({
-        statusCode: 500,
-        messageServer: err,
-      })
+// DELETE 
+const deleteUsers = async (req, res) => {
+  const deleteUser = TableUser.destroy({
+    where: {
+      id: req.params.id
     }
-
-    res.json({
-      statusCode: 200,
-      message: 'success delete users !!!',
-      rows: rows
-    })
+  })
+  
+  res.json({
+    statusCode: 200,
+    message: 'berhasil remove users'
   })
 }
 
 module.exports = {
-  readData,
-  searchUser,
-  createData,
-  updateData,
-  deleteData
+  readUsers, // READ
+  createUsers, // CREATE
+  updateUsers, // UPDATE
+  deleteUsers, // DELETE
+>>>>>>> dev
 }
