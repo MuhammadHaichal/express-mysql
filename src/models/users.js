@@ -1,25 +1,24 @@
-const getAllUsers = () => {
-    const SQLquery = `SELECT * FROM users`
-    return SQLquery
-}
+const db  = require('../config/database')
+const { DataTypes } = require('sequelize')
 
-const createUsers = (body) => {
-    const SQLquery = ` INSERT INTO users (nama, umur, address, noTelpone)
-                       VALUES ('${body.nama}', ${body.umur}, '${body.address}', ${body.noTelpone})
-                     `
-    return SQLquery
-}
+// CREATE TABLE   
+const TableUsers = db.define('users', {
+  'nama': {
+    type: DataTypes.STRING(50),
+    allowNull: false
+  },
+  'umur': {
+    type: DataTypes.INTEGER(2),
+    allowNull: false
+  },
+  'address': {
+    type: DataTypes.TEXT('medium'),
+    allowNull: false
+  },
+  'noTelpone': {
+    type: DataTypes.BIGINT,
+    allowNull: false
+  },
+})
 
-const updateUsers = (body, id) =>  {
-    const SQLquery = ` UPDATE users SET nama = '${body.nama}',
-                       umur = ${body.umur}, address = '${body.address}', noTelpone = ${body.noTelpone}
-                       WHERE id = ${id}
-                     `
-    return SQLquery
-}
-
-module.exports = {
-    getAllUsers,
-    createUsers,
-    updateUsers,
-}
+module.exports = TableUsers

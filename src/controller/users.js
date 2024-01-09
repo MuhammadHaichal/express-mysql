@@ -1,62 +1,84 @@
-const models = require('../models/users')
-const db = require('../config/database')
+const TableUser = require('../models/users')
 
 // READ
-const readData = (req, res) => {
-  db.query(models.getAllUsers(), (err, rows) => {
-    if (err) {
-      res.status(500).json({
-        message: 'internal server error',
-        serverMessage: err //  DEV
-      })
-    }
-    res.status(200).json({
-      message: "readData",
-      data: rows
-    })
+const readUsers = async (req, res) => {  
+  const getDataUser = await TableUser.findAll()
+  const parse = JSON.stringify(getDataUser)
+  
+  res.status(200).json({
+    statusCode: 200,
+    message: 'mengambil data users',
+    data: parse
   })
 }
+
 
 
 // CREATE 
-const createData = (req, res) => {
-
-  db.query(models.createUsers(req.body), (err, rows) => {
-    if (err) {
-      res.status(500).json({
-        message: 'failed create users !!!',
-        serverMessage: err //  DEV
-      })
-    }
-
-    res.status(201).json({
-      message: 'success creating users !!!',
-      rows: rows.affectedRows,
-      insertId: rows.insertId
-    })
+const createUsers = async (req, res) => {
+  const nama = req.body.nama;
+  const umur = req.body.umur;
+  const address = req.body.address;
+  const noTelpone = req.body.noTelpone;
+  
+  const CreateUser = await TableUser.create({
+    nama: nama,
+    umur: umur,
+    address: address,
+    noTelpone: noTelpone
+  })
+  
+  console.log(CreateUser)
+  res.status(201).json({
+    statusCode: 201,
+    message: 'berhasil membuat user',
   })
 }
+
 
 
 // UPDATE 
-const updateData = (req, res) => {
-  db.query(models.updateUsers(req.body, req.params.id), (err, rows) => {
-    if (err) {
-      res.status(500).json({
-        message: 'failed update users !!!',
-        serverMessage: err //  DEV
-      })
+const updateUsers = async (req, res)  => {
+  const nama = req.body.nama;
+  const umur = req.body.umur;
+  const address = req.body.address;
+  const noTelpone = req.body.noTelpone;
+  
+  const UpdateUser =  await TableUser.update({
+    nama: nama,
+    umur: umur,
+    address: address,
+    noTelpone: noTelpone
+  }, {
+    where: {
+      id: req.params.id
     }
-
-    res.status(200).json({
-      message: 'success update users !!!'
-    })
   })
+  
+  res.json({
+    statusCode: 200,
+    message: 'berhasil update users',
+    data: UpdateUser
+  })
+}
 
+// DELETE 
+const deleteUsers = async (req, res) => {
+  const deleteUser = TableUser.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  
+  res.json({
+    statusCode: 200,
+    message: 'berhasil remove users'
+  })
 }
 
 module.exports = {
-  readData,
-  createData,
-  updateData
+  readUsers, // READ
+  createUsers, // CREATE
+  updateUsers, // UPDATE
+  deleteUsers, // DELETE
 }
