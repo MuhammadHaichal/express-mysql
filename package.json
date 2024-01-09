@@ -1,6 +1,6 @@
 {
   "name": "express-mysql-2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "membuat crud dengan express dan mysql",
   "main": "index.js",
   "author": "haikal",
