@@ -18,8 +18,14 @@ const updateUsers = (body, id) =>  {
     return SQLquery
 }
 
+const deleteUsers = (id) => {
+  const SQLquery = `  DELETE FROM users WHERE id = ${id}`
+  return SQLquery
+}
+
 module.exports = {
     getAllUsers,
     createUsers,
     updateUsers,
+    deleteUsers
 }

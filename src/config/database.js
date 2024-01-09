@@ -6,6 +6,7 @@ const connectDb = mysql.createConnection({
     database: 'express_mysql_2',
 })
 
+
 connectDb.connect((err) => {
     if (err) {
         console.error(err)
