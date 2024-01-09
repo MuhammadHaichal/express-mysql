@@ -21,7 +21,5 @@ const TableUsers = db.define('users', {
   },
 })
 
-<<<<<<< HEAD
-=======
 module.exports = TableUsers
->>>>>>> dev
+

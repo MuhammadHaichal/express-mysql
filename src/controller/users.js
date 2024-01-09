@@ -1,11 +1,6 @@
 const TableUser = require('../models/users')
 
-
-
 // READ
-<<<<<<< HEAD
-
-=======
 const readUsers = async (req, res) => {  
   const getDataUser = await TableUser.findAll()
   const parse = JSON.stringify(getDataUser)
@@ -14,7 +9,6 @@ const readUsers = async (req, res) => {
     statusCode: 200,
     message: 'mengambil data users',
     data: parse
->>>>>>> dev
   })
 }
 
@@ -26,8 +20,6 @@ const searchUser = (req, res) => {
 
 
 // CREATE 
-<<<<<<< HEAD
-=======
 const createUsers = async (req, res) => {
   const nama = req.body.nama;
   const umur = req.body.umur;
@@ -41,20 +33,15 @@ const createUsers = async (req, res) => {
     noTelpone: noTelpone
   })
   
-  console.log(CreateUser)
   res.status(201).json({
     statusCode: 201,
     message: 'berhasil membuat user',
   })
->>>>>>> dev
 }
 
 
 
 // UPDATE 
-<<<<<<< HEAD
-
-=======
 const updateUsers = async (req, res)  => {
   const nama = req.body.nama;
   const umur = req.body.umur;
@@ -98,5 +85,4 @@ module.exports = {
   createUsers, // CREATE
   updateUsers, // UPDATE
   deleteUsers, // DELETE
->>>>>>> dev
 }
