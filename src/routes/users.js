@@ -13,7 +13,7 @@ const bodyJson = bodyParser.json()
 router.get('/read', readUsers)
 
 // SEARCH USERS -- COMMING SOON
-router.post('/search', searchUser)
+// router.post('/search', searchUser)
 
 // CREATE 
 router.post('/create', bodyJson, createUsers)

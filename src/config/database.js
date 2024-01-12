@@ -1,5 +1,5 @@
-const mysql = require('mysql2')
 const sequelize = require('sequelize')
+
 
 // hubungkan database 
 const connectDb = new sequelize('express_mysql_2', 'root', 'root', {
